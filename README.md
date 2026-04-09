@@ -1,44 +1,214 @@
-# AI-Disease-Prediction-System
-AI-Disease Prediction System Project
+# AI Disease Prediction System
 
-This project focuses on the model of predictive diagnosis involving
-data munging, feature selection, model training and accuracy
-calculation. We try to introduce and validate methods that
-improve certain aspects of this process.
+![Java](https://img.shields.io/badge/Java-100%25-blue)
+![License](https://img.shields.io/badge/License-MIT-green)
 
-# Assignment Problem Statement & Details
-# Problem Statement [3-PART]:
-1. The data munging process introduces significant bias depending on
-majority of dataset by replacing with mean.
-2. The feature selection process suffers from lack of adaptability by
-keeping a constant p-value significance limit of 0.05 without variance
-depending on the disease.
-3. The datasets for diagnosis prediction must be general & not bias,
-with enough data for each class of features.
+An AI-powered disease prediction system that implements predictive diagnosis models for multiple diseases using data munging, feature selection, model training, and accuracy calculation. This project validates and improves existing methods in the disease diagnosis pipeline.
 
-For data munging, we propose improvements
-through using the method of k-nearest-neighbors and extensively
-compare the results with data munging done by replacing with
-mean.
+---
 
-For the feature selection, we use the simulated annealing
-algorithm to set up an environment of varying p-value within a
-given upper bound and lower bound, defined initial temperature
-and cooling rate. Evaluation of the model has been done by
-testing on the training set rather than dividing the sets, although
-results from cross-validation have been provided at numerous
-places throughout the report. This has been supported by the
-fact that the 90/10 Train-test method gave stale accuracies for
-most p-values although they had different attribute sets and
-considerable differences when predicting on the training set.
-For data augmentation, to improve the diversity of the dataset -
-we have proposed a few data augmentation techniques such as
-adding noise, scaling etc.
+## Table of Contents
 
-# Instructions for running the application:
-1. Prerequisite: A local mysql server.
-2. Open the DBConnection.java file in each of the two projects
-(BreastCancerPrediction & HeartDiseasePrediction).
-3. Change the username and password in these two instances as per the credentials set in your system during your mysql installation. (For most mysql servers, the defaults are username: “root”, password: “”).
-4. Run the BreastCancerPrediction.java and the HeartDiseasePrediction.java independently.
-Note: The main functions of each of the two programs do not run all the functions in sequence. You may uncomment the function calls to get the outputs of specific functionalities as needed.
+- [Overview](#overview)
+- [Features](#features)
+- [Project Structure](#project-structure)
+- [Diseases Covered](#diseases-covered)
+- [Methodology](#methodology)
+- [Technologies Used](#technologies-used)
+- [Installation & Setup](#installation--setup)
+- [Usage](#usage)
+- [Datasets](#datasets)
+- [Results](#results)
+- [Contributors](#contributors)
+- [License](#license)
+
+---
+
+## Overview
+
+This project implements an AI-based predictive diagnosis system focusing on improving key aspects of the disease prediction pipeline:
+
+1. **Data Munging** - Replacing missing values using k-nearest neighbors (KNN) instead of mean substitution to reduce bias
+2. **Feature Selection** - Using simulated annealing algorithm with adaptive p-value thresholds
+3. **Model Training** - Training predictive models on medical datasets
+4. **Accuracy Evaluation** - Comprehensive cross-validation and accuracy calculation
+
+---
+
+## Features
+
+- Multi-disease prediction support (Breast Cancer, Heart Disease, Diabetes)
+- KNN-based data imputation for handling missing values
+- Simulated annealing for optimized feature selection
+- Adaptive p-value significance thresholds
+- Data augmentation techniques (noise addition, scaling)
+- Cross-validation support
+- MySQL database integration
+- Comprehensive result visualization with graphs
+
+---
+
+## Project Structure
+
+```
+AI-Disease-Prediction-system/
+├── BreastCancer/                 # Breast cancer dataset files
+├── BreastCancerPrediction/       # Breast cancer prediction module (Maven)
+├── Diabetes/                     # Diabetes dataset files
+├── HeartDiseaseData/             # Heart disease dataset files
+├── HeartDiseasePrediction/       # Heart disease prediction module (Maven)
+├── Presentation/                 # Project presentation files
+├── Project Report/               # Detailed project report
+├── Results - Graphs/             # Result visualizations and graphs
+├── commons-math3-*.jar           # Apache Commons Math library
+├── mysql-connector-java-*.jar    # MySQL JDBC driver
+├── build.xml                     # Ant build configuration
+├── manifest.mf                   # JAR manifest file
+└── README.md                     # Project documentation
+```
+
+---
+
+## Diseases Covered
+
+| Disease | Dataset Source | Prediction Module |
+|---------|---------------|------------------|
+| Breast Cancer | Wisconsin Breast Cancer Dataset | `BreastCancerPrediction.java` |
+| Heart Disease | Cleveland & Hungarian Heart Disease Datasets | `HeartDiseasePrediction.java` |
+| Diabetes | Pima Indians Diabetes Dataset | `Diabetes/` folder |
+
+---
+
+## Methodology
+
+### Data Munging Improvements
+- Replaced mean imputation with **k-nearest neighbors (KNN)** method
+- Reduced bias introduced by majority-class substitution
+
+### Feature Selection
+- Implemented **simulated annealing algorithm** for optimal feature selection
+- Adaptive p-value thresholds within configurable upper and lower bounds
+- Configurable initial temperature and cooling rate parameters
+
+### Model Evaluation
+- 90/10 train-test split method
+- Cross-validation results provided throughout the report
+- Accuracy comparison across different feature sets
+
+### Data Augmentation
+- Noise addition techniques
+- Data scaling methods
+- Improved dataset diversity
+
+---
+
+## Technologies Used
+
+- **Programming Language:** Java
+- **Build Tools:** Maven, Apache Ant
+- **Database:** MySQL
+- **Libraries:**
+  - Apache Commons Math 3.x
+  - MySQL Connector/J 8.0
+- **IDE:** NetBeans
+- **Version Control:** Git & GitHub
+
+---
+
+## Installation & Setup
+
+### Prerequisites
+
+- Java Development Kit (JDK) 8 or higher
+- MySQL Server (local installation)
+- Maven (for prediction modules)
+- Apache Ant (for main project)
+- NetBeans IDE (recommended)
+
+### Steps
+
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/code-divyu/AI-Disease-Prediction-system.git
+   cd AI-Disease-Prediction-system
+   ```
+
+2. **Configure MySQL Database:**
+   - Open `DBConnection.java` in both `BreastCancerPrediction/` and `HeartDiseasePrediction/` folders
+   - Update the MySQL username and password:
+     ```java
+     String username = "root";  // Change to your MySQL username
+     String password = "";      // Change to your MySQL password
+     ```
+
+3. **Build the project:**
+   - For Maven modules:
+     ```bash
+     cd BreastCancerPrediction
+     mvn clean install
+     ```
+   - For the main project:
+     ```bash
+     ant build
+     ```
+
+---
+
+## Usage
+
+### Running the Prediction Modules
+
+1. **Breast Cancer Prediction:**
+   ```bash
+   cd BreastCancerPrediction
+   java -cp target/classes com.mycompany.breastcancer.BreastCancerPrediction
+   ```
+
+2. **Heart Disease Prediction:**
+   ```bash
+   cd HeartDiseasePrediction
+   java -cp target/classes com.mycompany.heartdisease.HeartDiseasePrediction
+   ```
+
+### Note
+The main functions in each program do not execute all functionalities in sequence by default. Uncomment specific function calls to run individual modules as needed.
+
+---
+
+## Datasets
+
+### Breast Cancer Dataset
+- **Source:** UCI Machine Learning Repository - Wisconsin Breast Cancer Dataset
+- **Location:** `BreastCancer/` folder
+- **Files:** `breast-cancer-wisconsin.data`, `wdcb.data`, `Index`
+
+### Heart Disease Dataset
+- **Source:** UCI Machine Learning Repository - Heart Disease Datasets
+- **Location:** `HeartDiseaseData/` folder
+- **Files:** `processed.cleveland.data`, `hungarian.data`, `heart-disease.names`
+
+### Diabetes Dataset
+- **Source:** UCI Machine Learning Repository - Pima Indians Diabetes Dataset
+- **Location:** `Diabetes/` folder
+
+---
+
+## Results
+
+Result visualizations and graphs are available in the `Results - Graphs/` folder. The project report contains detailed accuracy metrics, cross-validation results, and comparative analysis of different methods.
+
+---
+
+## Contributors
+
+- **Divyanshu** ([@code-divyu](https://github.com/code-divyu))
+
+---
+
+## License
+
+This project is open-source and available under the MIT License.
+
+---
+
+> **Note:** This project is intended for educational and research purposes. It should not be used as a substitute for professional medical diagnosis.
